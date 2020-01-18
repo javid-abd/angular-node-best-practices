@@ -1,0 +1,17 @@
+@import 'src/variables';
+
+nav {
+  background: -webkit-linear-gradient(left, #9faeb8 0%, #e6e0e7 100%);
+  margin-bottom: 20px;
+  @include light-shadow;
+}
+
+.navbar-brand img {
+  max-height: 4rem;
+}
+
+.navbar-brand p {
+  font-family: 'Bowlby One SC', cursive;
+  font-size: 28px;
+  margin-left: 10px;
+}
