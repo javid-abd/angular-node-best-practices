@@ -1,0 +1,20 @@
+<div class="columns is-centered">
+  <div class="column is-5">
+    <div class="card">
+      <header class="card-header"></header>
+      <div class="card-content">
+        <div class="tabs">
+          <ul>
+            <li [ngClass]="{'is-active': showingLogin}" (click)="showLogin()">
+              <a>Log In</a>
+            </li>
+            <li [ngClass]="{'is-active': showingSignup}" (click)="showSignup()">
+              <a>Sign Up</a>
+            </li>
+          </ul>
+        </div>
+        <!-- Our login and signup components will go here -->
+      </div>
+    </div>
+  </div>
+</div>
