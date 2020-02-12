@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  FormControl,
+  Validators
+} from '@angular/forms';
+import { AuthService } from '../../service/auth.service';
+import { NewUser } from 'src/app/shared/models/new-user';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
@@ -12,14 +20,13 @@ export class SignupComponent implements OnInit {
   public emailValidating = false;
   public signupResult: any;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   ngOnInit() {
-    this.createForm();
+    this.formBuilder();
   }
 
-  private createForm(): void {
-
+  private formBuilder(): void {
     this.signupForm = this.fb.group({
       email: new FormControl(null, {
         validators: [Validators.required, Validators.email]
@@ -31,7 +38,29 @@ export class SignupComponent implements OnInit {
         validators: [Validators.required]
       })
     });
-
   }
 
+  public onSubmit(data: any): void {
+    if (this.signupForm.valid) {
+
+      this.signupLoading = true;
+      const { email, username, password } = this.signupForm.value;
+      const newUser: NewUser = {
+        email,
+        username,
+        password
+      };
+
+      this.authService.signup(newUser).subscribe(
+        res => {
+          console.log(res);
+          this.signupLoading = false;
+        },
+        (err: HttpErrorResponse) => {
+          console.log(err);
+          this.signupLoading = false;
+        }
+      );
+    }
+  }
 }

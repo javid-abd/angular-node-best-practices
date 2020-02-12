@@ -1,9 +1,14 @@
-<form [formGroup]="signupForm" #value (ngSubmit)="createForm(value)">
+<form [formGroup]="signupForm" #value (ngSubmit)="onSubmit(value)">
   <div class="columns is-multiline">
     <div class="column is-full">
       <div class="field">
         <p class="control has-icons-left">
-          <input class="input" type="email" formControlName="email" placeholder="Email">
+          <input
+            class="input"
+            type="email"
+            formControlName="email"
+            placeholder="Email"
+          />
           <span class="icon is-small is-left">
             <i class="fa fa-envelope"></i>
           </span>
@@ -13,7 +18,12 @@
     <div class="column is-full">
       <div class="field">
         <p class="control has-icons-left">
-          <input class="input" type="text" formControlName="username" placeholder="Username">
+          <input
+            class="input"
+            type="text"
+            formControlName="username"
+            placeholder="Username"
+          />
           <span class="icon is-small is-left">
             <i class="fa fa-user"></i>
           </span>
@@ -23,7 +33,12 @@
     <div class="column is-full">
       <div class="field">
         <p class="control has-icons-left">
-          <input class="input" type="password" formControlName="password" placeholder="Password">
+          <input
+            class="input"
+            type="password"
+            formControlName="password"
+            placeholder="Password"
+          />
           <span class="icon is-small is-left">
             <i class="fa fa-lock"></i>
           </span>
