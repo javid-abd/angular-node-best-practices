@@ -1,3 +1,5 @@
+const queries = require('../query/index');
+
 const postUser = async (req, res) => {
   try {
     const user = {
@@ -6,15 +8,19 @@ const postUser = async (req, res) => {
       password: req.body.username
     };
 
-    console.log(user);
+    await queries.createUser(user);
+
     return res.status(201).json({
       success: true,
-      message: "User was created"
+      message: 'User was created'
     });
   } catch (err) {
-    console.log(err);
+    return res.status(400).json({
+      success: false,
+      message: `Error occurred while creating a new user`,
+      error: err
+    });
   }
 };
 
-
-module.exports = { postUser }
+module.exports = { postUser };
