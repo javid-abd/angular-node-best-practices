@@ -1,13 +1,15 @@
 const queries = require('../query/index');
 
+const util = require('../utils/index');
+
 const postUser = async (req, res) => {
   try {
+    const hashedPassword = await util.hashPassword(req.body.password);
     const user = {
       email: req.body.email,
       username: req.body.username,
-      password: req.body.username
+      password: hashedPassword
     };
-
     await queries.createUser(user);
 
     return res.status(201).json({
