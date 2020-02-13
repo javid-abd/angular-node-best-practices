@@ -16,6 +16,7 @@ app.get('/ping', (req, res) => {
 });
 
 app.use('/api/v1/users', require('./api/users'));
+app.use('/api/v1/sudo', require('./api/sudo'));
 
 (async function connect() {
   try {
