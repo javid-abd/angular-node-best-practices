@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
   public signupForm: FormGroup;
   public signupLoading = false;
   public emailValidating = false;
-  public signupResult: any;
+  public signupResult: object;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {}
 
@@ -42,7 +42,6 @@ export class SignupComponent implements OnInit {
 
   public onSubmit(data: any): void {
     if (this.signupForm.valid) {
-
       this.signupLoading = true;
       const { email, username, password } = this.signupForm.value;
       const newUser: NewUser = {
@@ -54,10 +53,19 @@ export class SignupComponent implements OnInit {
       this.authService.signup(newUser).subscribe(
         res => {
           console.log(res);
+          this.signupResult = {
+            message: res.message,
+            state: 'success'
+          };
+
           this.signupLoading = false;
         },
         (err: HttpErrorResponse) => {
           console.log(err);
+          this.signupResult = {
+            message: err,
+            state: 'error'
+          };
           this.signupLoading = false;
         }
       );

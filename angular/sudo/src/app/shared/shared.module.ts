@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthMessageComponent } from './messages/auth-message/auth-message.component';
 
 @NgModule({
-  declarations: [ ],
+  declarations: [ AuthMessageComponent],
   imports: [
     CommonModule
   ],
